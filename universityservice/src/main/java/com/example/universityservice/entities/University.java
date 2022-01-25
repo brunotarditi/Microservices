@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Setter
 @Table(name = "university")
 public class University {
+    private static final long serialVersionUID = 1;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
