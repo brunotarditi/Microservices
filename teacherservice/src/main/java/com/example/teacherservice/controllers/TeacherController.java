@@ -37,8 +37,8 @@ public class TeacherController {
     }
 
     @PostMapping()
-    public ResponseEntity<Teacher> save(@RequestBody Teacher book) throws Exception {
-        return ResponseEntity.ok(this.teacherService.save(book));
+    public ResponseEntity<Teacher> save(@RequestBody Teacher teacher) throws Exception {
+        return ResponseEntity.ok(this.teacherService.save(teacher));
     }
 
     @GetMapping("/byUniversity/{universityId}")
