@@ -1,5 +1,6 @@
 package com.example.universityservice.services;
 
+import com.example.universityservice.entities.DbSequence;
 import com.example.universityservice.entities.University;
 import com.example.universityservice.feignclients.StudentFeignClient;
 import com.example.universityservice.feignclients.TeacherFeignClient;
@@ -7,13 +8,14 @@ import com.example.universityservice.models.Student;
 import com.example.universityservice.models.Teacher;
 import com.example.universityservice.repositories.UniversityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+import static org.springframework.data.mongodb.core.query.Query.query;
+import java.util.*;
 
 @Service
 public class UniversityService {
@@ -21,20 +23,19 @@ public class UniversityService {
     private final RestTemplate restTemplate;
     private final TeacherFeignClient teacherFeignClient;
     private final StudentFeignClient studentFeignClient;
-
+    private final MongoOperations mongoOperations;
     @Autowired
-    public UniversityService(UniversityRepository universityRepository, RestTemplate restTemplate, TeacherFeignClient teacherFeignClient, StudentFeignClient studentFeignClient) {
+    public UniversityService(UniversityRepository universityRepository, RestTemplate restTemplate, TeacherFeignClient teacherFeignClient, StudentFeignClient studentFeignClient, MongoOperations mongoOperations) {
         this.universityRepository = universityRepository;
         this.restTemplate = restTemplate;
         this.teacherFeignClient = teacherFeignClient;
         this.studentFeignClient = studentFeignClient;
+        this.mongoOperations = mongoOperations;
     }
-
-
 
     public List<University> findByAll() throws Exception {
         try {
-            return (List<University>) this.universityRepository.findAll();
+            return this.universityRepository.findAll();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -50,6 +51,7 @@ public class UniversityService {
 
     public University save(University university) throws Exception {
         try {
+            university.setId(generateSequence());
             return this.universityRepository.save(university);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -95,6 +97,13 @@ public class UniversityService {
         else
             results.put("Students", students);
         return results;
+    }
+
+    private long generateSequence(){
+        DbSequence sequence = mongoOperations.findAndModify(query(where("_id").is(University.SEQUENCE_NAME)),
+                new Update().inc("seq",1), options().returnNew(true).upsert(true),
+                DbSequence.class);
+        return !Objects.isNull(sequence) ? sequence.getSeq() : 1;
     }
 
 }

@@ -69,7 +69,7 @@ public class UniversityController {
         return ResponseEntity.ok(this.universityService.saveTeacher(universityId, teacher));
     }
 
-    @PostMapping("/saveMovie/{universityId}")
+    @PostMapping("/saveStudent/{universityId}")
     public ResponseEntity<Student> saveMovie(@PathVariable long universityId, @RequestBody Student student) throws Exception {
         if (this.universityService.findById(universityId).isEmpty())
             return ResponseEntity.notFound().build();

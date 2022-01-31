@@ -14,6 +14,6 @@ public interface TeacherFeignClient {
     @PostMapping()
     Teacher save(@RequestBody Teacher teacher);
 
-    @GetMapping("/teachers/{universityId}")
+    @GetMapping("/byUniversity/{universityId}")
     List<Teacher> getTeachers(@PathVariable long universityId);
 }
