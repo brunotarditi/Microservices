@@ -1,8 +1,10 @@
 spring:
   application:
     name: studentservice
-  config:
-    import: optional:configserver:http://localhost:8081
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081
 
   data:
     mongodb:
