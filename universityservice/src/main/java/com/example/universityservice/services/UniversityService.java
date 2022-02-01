@@ -59,12 +59,12 @@ public class UniversityService {
     }
 
     public List<Teacher> getTeachers(long byUniversity){
-        return restTemplate.getForObject("http://localhost:8002/teachers/byUniversity/" + byUniversity, List.class);
+        return restTemplate.getForObject("http://teacherservice/teachers/byUniversity/" + byUniversity, List.class);
 
     }
 
     public List<Student> getStudents(long byUniversity){
-        return restTemplate.getForObject("http://localhost:8003/students/byUniversity/" + byUniversity, List.class);
+        return restTemplate.getForObject("http://studentservice/students/byUniversity/" + byUniversity, List.class);
     }
 
     public Teacher saveTeacher(long universityId, Teacher teacher){

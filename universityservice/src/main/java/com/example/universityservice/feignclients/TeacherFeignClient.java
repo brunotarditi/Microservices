@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(name = "teacherservice", url = "http://localhost:8002/teachers")
+@FeignClient(name = "teacherservice")
 public interface TeacherFeignClient {
     @PostMapping()
     Teacher save(@RequestBody Teacher teacher);
