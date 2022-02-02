@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          default-label: instances
+          default-label: gateway
           uri: https://github.com/brunotarditi/Microservices
           search-paths: config-data
   application:
