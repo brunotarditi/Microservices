@@ -103,4 +103,8 @@ public class UniversityController {
     private ResponseEntity<Student> fallbackSaveStudent(@PathVariable long universityId, @RequestBody Student student, RuntimeException e){
         return new ResponseEntity("La universidad " + universityId + " no tiene más lugar para un alumno.", HttpStatus.OK);
     }
+
+    private ResponseEntity<Map<String, Object>> fallbackGetAll(@PathVariable long universityId, RuntimeException e){
+        return new ResponseEntity("La universidad " + universityId + " no tiene ni profesores y alumnos por vacaciones.", HttpStatus.OK);
+    }
 }
