@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: authservice
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: microservices
