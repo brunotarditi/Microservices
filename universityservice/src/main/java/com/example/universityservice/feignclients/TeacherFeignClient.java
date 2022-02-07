@@ -11,9 +11,9 @@ import java.util.List;
 
 @FeignClient(name = "teacherservice")
 public interface TeacherFeignClient {
-    @PostMapping()
+    @PostMapping("/teachers")
     Teacher save(@RequestBody Teacher teacher);
 
-    @GetMapping("/byUniversity/{universityId}")
+    @GetMapping("/teachers/byUniversity/{universityId}")
     List<Teacher> getTeachers(@PathVariable long universityId);
 }
