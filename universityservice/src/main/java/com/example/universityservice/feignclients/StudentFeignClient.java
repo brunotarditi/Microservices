@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @FeignClient(name = "studentservice")
+@RequestMapping("/students")
 public interface StudentFeignClient {
-    @PostMapping("/students")
+    @PostMapping()
     Student save(@RequestBody Student student);
 
-    @GetMapping("/students/byUniversity/{universityId}")
+    @GetMapping("/byUniversity/{universityId}")
     List<Student> getStudents(@PathVariable long universityId);
 }
