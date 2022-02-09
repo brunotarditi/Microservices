@@ -11,3 +11,5 @@ spring:
       host: localhost
       port: 27017
       database: microservices
+jwt:
+  secret: secret
