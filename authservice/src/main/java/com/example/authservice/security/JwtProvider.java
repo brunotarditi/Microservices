@@ -52,9 +52,7 @@ public class JwtProvider {
         }catch (Exception e){
             return false;
         }
-        if (!isAdmin(token) && routeValidator.isAdminPath(dto))
-            return false;
-        return true;
+        return isAdmin(token) || !routeValidator.isAdminPath(dto);
     }
 
     public String getUserNameFromToken(String token){
