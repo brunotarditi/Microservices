@@ -6,7 +6,7 @@ spring:
       server:
         git:
           default-label: docker
-          uri: https://github.com/brunotarditi/Microservices/config-data
+          uri: https://github.com/brunotarditi/Microservices
           search-paths: config-data
   application:
     name: configservice
