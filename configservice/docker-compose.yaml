@@ -1,0 +1,11 @@
+version: "3"
+services:
+  configservice:
+    image: configservice
+    ports:
+      - 8081:8081
+  eurekaservice:
+    image: eurekaservice
+    restart: on-failure
+    ports:
+      - 8761:8761
