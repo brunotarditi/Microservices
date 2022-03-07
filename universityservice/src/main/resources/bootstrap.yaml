@@ -4,7 +4,7 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://configservice:8888
+      uri: http://configservice-container:8888
 
   data:
     mongodb:
