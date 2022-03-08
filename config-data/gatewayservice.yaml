@@ -7,7 +7,7 @@ eureka:
     service-url:
       defaultZone: http://eurekaservice-container:8761/eureka
   instance:
-    hostname: localhost
+    hostname: eurekaservice-container
 spring:
   cloud:
     gateway:
