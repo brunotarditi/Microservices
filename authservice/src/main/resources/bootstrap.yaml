@@ -5,13 +5,5 @@ spring:
     config:
       enabled: true
       uri: http://configservice-container:8888
-
-  data:
-    mongodb:
-      host: 127.0.0.1
-      port: 27017
-      database: microservices
-      username: mongo
-      password: mongo
 jwt:
   secret: secret
