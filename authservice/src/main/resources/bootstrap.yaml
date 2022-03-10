@@ -10,7 +10,5 @@ spring:
       host: mongodb
       port: 27017
       database: microservices
-      username: mongo
-      password: mongo
 jwt:
   secret: secret
